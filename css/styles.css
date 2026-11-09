@@ -172,15 +172,16 @@ h3 { font-size: 1.35rem; line-height: 1.25; }
 .testimonial-controls button:hover { background: var(--green-800); color: var(--white); }
 .testimonial-controls span { min-width: 55px; color: var(--muted); font-size: .7rem; text-align: center; }
 
-.location-section { display: grid; grid-template-columns: 1.35fr .65fr; min-height: 650px; background: var(--green-800); color: var(--white); }
-.location-map { position: relative; min-height: 650px; overflow: hidden; background: #d8e1d4; }
-.location-map iframe { width: 100%; height: 100%; min-height: 650px; border: 0; }
+.location-section { padding: clamp(56px, 7vw, 88px) 0; background: var(--paper); }
+.location-card { display: grid; overflow: hidden; max-width: 1000px; grid-template-columns: minmax(0, 1.25fr) minmax(340px, .75fr); border-radius: 22px; background: var(--green-800); color: var(--white); box-shadow: 0 24px 60px rgba(24,52,35,.18); }
+.location-map { position: relative; min-height: 420px; overflow: hidden; background: #d8e1d4; }
+.location-map iframe { width: 100%; height: 100%; min-height: 420px; border: 0; }
 .map-location-label { position: absolute; bottom: 24px; left: 24px; display: grid; min-width: 250px; padding: 16px 20px; background: rgba(251,250,246,.96); color: var(--green-950); box-shadow: 0 14px 38px rgba(24,52,35,.2); backdrop-filter: blur(10px); transition: transform .25s, box-shadow .25s; }
 .map-location-label:hover { transform: translateY(-3px); box-shadow: 0 19px 45px rgba(24,52,35,.26); }
 .map-location-label span { color: var(--green-700); font-size: .64rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
 .map-location-label strong { margin-top: 3px; font-family: Georgia, serif; font-size: 1rem; font-weight: 500; }
-.location-content { display: grid; padding: clamp(55px, 7vw, 100px); align-content: center; }
-.location-content h2 { font-size: clamp(2.5rem, 4vw, 4.4rem); }
+.location-content { display: grid; padding: clamp(36px, 5vw, 58px); align-content: center; }
+.location-content h2 { font-size: clamp(2.25rem, 3.4vw, 3.35rem); }
 .location-content address { margin: 0 0 35px; color: rgba(255,255,255,.73); font-style: normal; }
 .location-content address span { display: inline-block; margin-top: 8px; color: rgba(255,255,255,.9); font-size: .74rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
 .location-content .button { justify-self: start; }
@@ -241,7 +242,7 @@ h3 { font-size: 1.35rem; line-height: 1.25; }
   .rate-card { padding: 42px 32px; }
   .offers-shell { grid-template-columns: 1fr 1fr; }
   .offers-shell .text-link { grid-column: 1 / -1; }
-  .location-section { grid-template-columns: 1fr 1fr; }
+  .location-card { grid-template-columns: minmax(0, 1.1fr) minmax(320px, .9fr); }
   .booking-layout { grid-template-columns: .85fr 1.15fr; gap: 55px; }
 }
 
@@ -272,8 +273,8 @@ h3 { font-size: 1.35rem; line-height: 1.25; }
   .rate-card { max-width: 500px; }
   .offers-shell { grid-template-columns: 1fr; gap: 18px; }
   .offers-shell .text-link { grid-column: auto; }
-  .location-section { grid-template-columns: 1fr; }
-  .location-map, .location-map iframe { min-height: 430px; }
+  .location-card { max-width: 680px; grid-template-columns: 1fr; }
+  .location-map, .location-map iframe { min-height: 360px; }
   .booking-layout { grid-template-columns: 1fr; }
   .booking-copy { position: static; }
   .footer-main { grid-template-columns: 1fr; gap: 50px; }
@@ -303,7 +304,10 @@ h3 { font-size: 1.35rem; line-height: 1.25; }
   .offers-shell { padding: 25px; }
   .testimonials-track { min-height: 440px; }
   .testimonial blockquote { font-size: 1.45rem; }
-  .location-content { padding: 65px 24px; }
+  .location-section { padding: 48px 0; }
+  .location-card { border-radius: 14px; }
+  .location-map, .location-map iframe { min-height: 300px; }
+  .location-content { padding: 42px 24px; }
   .map-location-label { right: 16px; bottom: 16px; left: 16px; min-width: 0; }
   .booking-form { grid-template-columns: 1fr; padding: 28px 20px; }
   .field.full, .booking-form .full { grid-column: auto; }
