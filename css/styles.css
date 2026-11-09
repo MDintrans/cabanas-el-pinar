@@ -127,12 +127,12 @@ h3 { font-size: 1.35rem; line-height: 1.25; }
 .gallery-grid.expanded .extra-gallery { display: block; animation: fadeUp .45s both; }
 .text-button { display: flex; gap: 10px; align-items: center; margin: 34px auto 0; padding: 8px 0; border: 0; border-bottom: 1px solid rgba(255,255,255,.35); background: transparent; color: var(--white); font-size: .8rem; font-weight: 700; cursor: pointer; }
 
-.video-section { background: var(--charcoal); color: var(--white); }
-.video-wrap { position: relative; display: grid; min-height: min(78vh, 820px); overflow: hidden; place-items: center; }
-.video-wrap::after { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(9,20,15,.15), rgba(9,20,15,.6)); content: ""; pointer-events: none; }
-.video-wrap video { width: 100%; height: min(78vh, 820px); object-fit: cover; }
-.video-copy { position: absolute; z-index: 2; right: max(28px, calc((100vw - 1180px) / 2)); bottom: 70px; max-width: 450px; pointer-events: none; }
-.video-copy h2 { margin-bottom: 16px; font-size: clamp(2.5rem, 4.8vw, 4.8rem); }
+.video-section { padding: clamp(64px, 8vw, 112px) 0; background: var(--charcoal); color: var(--white); }
+.video-layout { display: grid; grid-template-columns: minmax(250px, .62fr) minmax(0, 1.38fr); gap: clamp(44px, 7vw, 92px); align-items: center; }
+.video-wrap { position: relative; overflow: hidden; aspect-ratio: 848 / 478; border: 1px solid rgba(255,255,255,.12); border-radius: 22px; background: #050a07; box-shadow: 0 24px 60px rgba(0,0,0,.28); }
+.video-wrap video { width: 100%; height: 100%; background: #050a07; object-fit: contain; }
+.video-copy { max-width: 390px; }
+.video-copy h2 { margin-bottom: 16px; font-size: clamp(2.5rem, 4vw, 4.2rem); }
 .video-copy p:last-child { color: rgba(255,255,255,.75); }
 
 .rates-section { background: var(--paper); }
@@ -269,7 +269,8 @@ h3 { font-size: 1.35rem; line-height: 1.25; }
   .gallery-grid { grid-auto-rows: 220px; grid-template-columns: 1fr 1fr; }
   .gallery-wide { grid-column: span 2; }
   .gallery-tall { grid-row: span 2; }
-  .video-copy { right: 30px; bottom: 35px; left: 30px; }
+  .video-layout { grid-template-columns: 1fr; gap: 36px; }
+  .video-copy { max-width: 620px; }
   .rates-layout { grid-template-columns: 1fr; }
   .rate-card { max-width: 500px; }
   .offers-shell { grid-template-columns: 1fr; gap: 18px; }
@@ -300,8 +301,9 @@ h3 { font-size: 1.35rem; line-height: 1.25; }
   .gallery-grid { grid-auto-rows: 210px; grid-template-columns: 1fr; }
   .gallery-wide { grid-column: auto; }
   .gallery-tall { grid-row: auto; }
-  .video-wrap, .video-wrap video { min-height: 610px; height: 75vh; }
-  .video-wrap video { object-position: center; }
+  .video-section { padding: 58px 0; }
+  .video-layout { gap: 28px; }
+  .video-wrap { border-radius: 14px; }
   .offers-shell { padding: 25px; }
   .testimonials-track { min-height: 440px; }
   .testimonial blockquote { font-size: 1.45rem; }
