@@ -1,0 +1,13 @@
+# Sistema operativo y editores
+.DS_Store
+Thumbs.db
+Desktop.ini
+.vscode/
+.idea/
+
+# Archivos locales de revisión
+qa-*.png
+*.log
+
+# Paquetes de despliegue locales
+*-deploy.tar.gz
