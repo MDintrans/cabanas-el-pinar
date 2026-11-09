@@ -127,13 +127,12 @@ h3 { font-size: 1.35rem; line-height: 1.25; }
 .gallery-grid.expanded .extra-gallery { display: block; animation: fadeUp .45s both; }
 .text-button { display: flex; gap: 10px; align-items: center; margin: 34px auto 0; padding: 8px 0; border: 0; border-bottom: 1px solid rgba(255,255,255,.35); background: transparent; color: var(--white); font-size: .8rem; font-weight: 700; cursor: pointer; }
 
-.video-section { padding: clamp(64px, 8vw, 112px) 0; background: var(--charcoal); color: var(--white); }
-.video-layout { display: grid; grid-template-columns: minmax(250px, .62fr) minmax(0, 1.38fr); gap: clamp(44px, 7vw, 92px); align-items: center; }
-.video-wrap { position: relative; overflow: hidden; aspect-ratio: 848 / 478; border: 1px solid rgba(255,255,255,.12); border-radius: 22px; background: #050a07; box-shadow: 0 24px 60px rgba(0,0,0,.28); }
-.video-wrap video { width: 100%; height: 100%; background: #050a07; object-fit: contain; }
-.video-copy { max-width: 390px; }
-.video-copy h2 { margin-bottom: 16px; font-size: clamp(2.5rem, 4vw, 4.2rem); }
-.video-copy p:last-child { color: rgba(255,255,255,.75); }
+.video-section { padding: clamp(56px, 7vw, 88px) 0; background: var(--charcoal); color: var(--white); }
+.video-header { max-width: 680px; margin: 0 auto; text-align: center; }
+.video-header h2 { margin-bottom: 14px; font-size: clamp(2.35rem, 4vw, 3.8rem); }
+.video-header p:last-child { max-width: 570px; margin: 0 auto; color: rgba(255,255,255,.75); }
+.video-player { position: relative; width: min(100%, 800px); margin: 34px auto 0; overflow: hidden; aspect-ratio: 16 / 9; border: 1px solid rgba(255,255,255,.14); border-radius: 16px; background: #050a07; box-shadow: 0 22px 52px rgba(0,0,0,.3); }
+.video-player video { width: 100%; height: 100%; background: #050a07; object-fit: contain; }
 
 .rates-section { background: var(--paper); }
 .rates-layout { display: grid; grid-template-columns: 1fr 420px; gap: clamp(50px, 9vw, 125px); align-items: center; }
@@ -269,8 +268,6 @@ h3 { font-size: 1.35rem; line-height: 1.25; }
   .gallery-grid { grid-auto-rows: 220px; grid-template-columns: 1fr 1fr; }
   .gallery-wide { grid-column: span 2; }
   .gallery-tall { grid-row: span 2; }
-  .video-layout { grid-template-columns: 1fr; gap: 36px; }
-  .video-copy { max-width: 620px; }
   .rates-layout { grid-template-columns: 1fr; }
   .rate-card { max-width: 500px; }
   .offers-shell { grid-template-columns: 1fr; gap: 18px; }
@@ -301,9 +298,8 @@ h3 { font-size: 1.35rem; line-height: 1.25; }
   .gallery-grid { grid-auto-rows: 210px; grid-template-columns: 1fr; }
   .gallery-wide { grid-column: auto; }
   .gallery-tall { grid-row: auto; }
-  .video-section { padding: 58px 0; }
-  .video-layout { gap: 28px; }
-  .video-wrap { border-radius: 14px; }
+  .video-section { padding: 48px 0; }
+  .video-player { margin-top: 24px; border-radius: 12px; }
   .offers-shell { padding: 25px; }
   .testimonials-track { min-height: 440px; }
   .testimonial blockquote { font-size: 1.45rem; }
