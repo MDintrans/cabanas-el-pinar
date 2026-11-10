@@ -135,26 +135,32 @@ h3 { font-size: 1.35rem; line-height: 1.25; }
 .video-player video { width: 100%; height: 100%; background: #050a07; object-fit: contain; }
 
 .rates-section { background: var(--paper); }
-.rates-layout { display: grid; grid-template-columns: 1fr 420px; gap: clamp(50px, 9vw, 125px); align-items: center; }
-.rates-copy h2 { max-width: 700px; }
-.rate-notes { margin: 40px 0 0; padding: 0; border-top: 1px solid var(--line); list-style: none; }
-.rate-notes li { display: flex; justify-content: space-between; gap: 20px; padding: 14px 0; border-bottom: 1px solid var(--line); font-size: .88rem; }
-.rate-notes span { color: var(--muted); }
-.rate-card { position: relative; padding: 52px 45px; overflow: hidden; background: var(--cream); box-shadow: var(--shadow); }
-.rate-card::before { position: absolute; top: -58px; right: -58px; width: 150px; height: 150px; border: 1px solid var(--green-500); border-radius: 50%; content: ""; }
-.rate-card > p:first-child { color: var(--green-700); font-size: .69rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
-.price { margin: 30px 0 14px; }
-.price > * { display: block; }
-.price small { margin-bottom: -9px; color: var(--muted); font-size: .85rem; }
-.price strong { font-family: Georgia, serif; font-size: clamp(3.4rem, 5vw, 5rem); font-weight: 500; line-height: 1; letter-spacing: -.05em; }
-.price span { margin-top: 10px; color: var(--muted); font-size: .7rem; font-weight: 750; letter-spacing: .1em; text-transform: uppercase; }
-.rate-fine { margin-bottom: 30px; color: var(--muted); font-size: .82rem; }
-.offers-shell { display: grid; grid-template-columns: 1fr 1.3fr auto; gap: 45px; align-items: center; margin-top: 75px; padding: 32px 38px; border: 1px solid var(--line); }
-.offers-heading > div { display: flex; gap: 8px; align-items: center; }
-.offers-heading p { margin: 0; color: var(--green-700); font-size: .68rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
-.status-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green-700); box-shadow: 0 0 0 5px rgba(64,133,37,.12); }
-.offers-heading h3 { margin: 7px 0 0; }
-.offers-shell > p { margin: 0; color: var(--muted); font-size: .9rem; }
+.rates-heading { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(300px, .75fr); gap: clamp(45px, 8vw, 110px); align-items: end; margin-bottom: 52px; }
+.rates-heading h2 { max-width: 760px; margin-bottom: 0; }
+.rates-heading .lead { margin-bottom: 6px; }
+.plans-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; align-items: stretch; }
+.plan-card { position: relative; display: flex; min-width: 0; padding: 32px 28px 28px; border: 1px solid var(--line); border-radius: 16px; background: var(--cream); flex-direction: column; transition: border-color .3s, box-shadow .3s, transform .3s; }
+.plan-card:hover { border-color: rgba(64,133,37,.42); box-shadow: 0 20px 48px rgba(24,52,35,.12); transform: translateY(-6px); }
+.plan-card-featured { border-color: rgba(64,133,37,.42); background: linear-gradient(160deg, #f7f4eb 0%, #edf3e9 100%); box-shadow: 0 18px 45px rgba(24,52,35,.1); }
+.plan-badge { position: absolute; top: 18px; right: 18px; padding: 6px 9px; border-radius: 999px; background: var(--green-800); color: var(--white); font-size: .61rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+.plan-title { display: flex; gap: 14px; align-items: center; padding-right: 70px; }
+.plan-mark { width: 30px; height: 39px; flex: 0 0 auto; fill: none; stroke: var(--green-700); stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.5; }
+.plan-title p { margin: 0 0 1px; color: var(--green-700); font-size: .62rem; font-weight: 800; letter-spacing: .13em; text-transform: uppercase; }
+.plan-title h3 { margin: 0; font-size: 2rem; letter-spacing: -.035em; }
+.plan-validity { margin: 18px 0 0; color: var(--muted); font-size: .68rem; font-weight: 750; letter-spacing: .06em; text-transform: uppercase; }
+.plan-validity time { color: var(--ink); }
+.plan-price { display: grid; grid-template-columns: auto 1fr; margin: 24px 0 20px; align-items: start; }
+.plan-price > span { margin: 5px 3px 0 0; color: var(--muted); font-family: Georgia, serif; font-size: 1.35rem; }
+.plan-price strong { font-family: Georgia, serif; font-size: clamp(3rem, 4vw, 4rem); font-weight: 500; line-height: .95; letter-spacing: -.055em; }
+.plan-price small { grid-column: 1 / -1; margin-top: 7px; color: var(--muted); font-size: .68rem; font-weight: 750; letter-spacing: .09em; text-transform: uppercase; }
+.plan-capacity { display: flex; gap: 9px; align-items: center; margin: 0; padding: 13px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); color: var(--muted); font-size: .82rem; }
+.plan-capacity svg { width: 21px; height: 21px; fill: none; stroke: var(--green-700); stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.7; }
+.plan-features { display: grid; margin: 14px 0 25px; padding: 0; list-style: none; }
+.plan-features li { position: relative; padding: 9px 0 9px 25px; border-bottom: 1px solid rgba(30,45,33,.09); color: var(--muted); font-size: .8rem; }
+.plan-features li::before { position: absolute; top: 7px; left: 2px; color: var(--green-700); content: "✓"; font-size: 1rem; font-weight: 850; }
+.plan-card .button { min-height: 48px; margin-top: auto; border-radius: 8px; }
+.plans-footer { display: flex; justify-content: space-between; gap: 35px; align-items: center; margin-top: 32px; padding-top: 22px; border-top: 1px solid var(--line); }
+.plans-footer p { max-width: 680px; margin: 0; color: var(--muted); font-size: .78rem; }
 .text-link { font-size: .8rem; font-weight: 750; white-space: nowrap; }
 .text-link span { margin-left: 6px; color: var(--green-700); }
 
@@ -258,9 +264,9 @@ h3 { font-size: 1.35rem; line-height: 1.25; }
   .main-nav { gap: 16px; }
   .hero-facts { display: none; }
   .amenities-grid { grid-template-columns: repeat(2, 1fr); }
-  .rate-card { padding: 42px 32px; }
-  .offers-shell { grid-template-columns: 1fr 1fr; }
-  .offers-shell .text-link { grid-column: 1 / -1; }
+  .plans-grid { gap: 14px; }
+  .plan-card { padding: 28px 22px 24px; }
+  .plan-title { padding-right: 55px; }
   .location-card { grid-template-columns: minmax(0, 1.1fr) minmax(340px, .9fr); }
   .booking-layout { grid-template-columns: .85fr 1.15fr; gap: 55px; }
 }
@@ -288,10 +294,11 @@ h3 { font-size: 1.35rem; line-height: 1.25; }
   .gallery-grid { grid-auto-rows: 220px; grid-template-columns: 1fr 1fr; }
   .gallery-wide { grid-column: span 2; }
   .gallery-tall { grid-row: span 2; }
-  .rates-layout { grid-template-columns: 1fr; }
-  .rate-card { max-width: 500px; }
-  .offers-shell { grid-template-columns: 1fr; gap: 18px; }
-  .offers-shell .text-link { grid-column: auto; }
+  .rates-heading { grid-template-columns: 1fr; gap: 22px; margin-bottom: 38px; }
+  .rates-heading .lead { max-width: 620px; margin-bottom: 0; }
+  .plans-grid { grid-template-columns: 1fr; }
+  .plan-card { width: 100%; max-width: 620px; margin-inline: auto; }
+  .plans-footer { align-items: flex-start; flex-direction: column; gap: 12px; }
   .location-card { max-width: 680px; grid-template-columns: 1fr; }
   .location-heading { grid-template-columns: 1fr; gap: 22px; margin-bottom: 38px; }
   .location-heading > p { max-width: 560px; margin-bottom: 0; }
@@ -322,7 +329,9 @@ h3 { font-size: 1.35rem; line-height: 1.25; }
   .gallery-tall { grid-row: auto; }
   .video-section { padding: 48px 0; }
   .video-player { margin-top: 24px; border-radius: 12px; }
-  .offers-shell { padding: 25px; }
+  .plan-card { padding: 26px 20px 22px; }
+  .plan-title h3 { font-size: 1.8rem; }
+  .plan-price strong { font-size: 3.2rem; }
   .testimonials-track { min-height: 440px; }
   .testimonial blockquote { font-size: 1.45rem; }
   .location-section { padding: 48px 0; }

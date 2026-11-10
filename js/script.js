@@ -226,6 +226,13 @@ const formatDate = (dateString) => {
   return new Intl.DateTimeFormat('es-CL', { day: '2-digit', month: '2-digit', year: 'numeric', timeZone: 'UTC' }).format(new Date(`${dateString}T00:00:00Z`));
 };
 
+const planSelect = document.querySelector('#plan');
+document.querySelectorAll('[data-plan]').forEach((button) => {
+  button.addEventListener('click', () => {
+    planSelect.value = button.dataset.plan;
+  });
+});
+
 document.querySelector('[data-booking-form]').addEventListener('submit', (event) => {
   event.preventDefault();
   const form = event.currentTarget;
@@ -237,6 +244,7 @@ document.querySelector('[data-booking-form]').addEventListener('submit', (event)
     `Nombre: ${data.get('name')}`,
     `Teléfono: ${data.get('phone')}`,
     data.get('email') ? `Correo: ${data.get('email')}` : null,
+    data.get('plan') ? `Plan de interés: ${data.get('plan')}` : null,
     `Llegada: ${formatDate(data.get('checkin'))}`,
     `Salida: ${formatDate(data.get('checkout'))}`,
     `Huéspedes: ${data.get('guests')}`,
