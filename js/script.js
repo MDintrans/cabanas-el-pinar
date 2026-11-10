@@ -89,13 +89,12 @@ const testimonialCounter = document.querySelector('[data-testimonial-counter]');
 const testimonialPrev = document.querySelector('[data-testimonial-prev]');
 const testimonialNext = document.querySelector('[data-testimonial-next]');
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-const TESTIMONIAL_DELAY = 6000;
+const TESTIMONIAL_DELAY = 5000;
 const TESTIMONIAL_TRANSITION = 700;
 let activeTestimonial = 0;
 let testimonialTimer;
 let testimonialAnimating = false;
 let testimonialsInView = false;
-let testimonialsHovered = false;
 let testimonialsFocused = false;
 let swipeStartX = null;
 let swipeStartY = null;
@@ -116,16 +115,18 @@ const updateTestimonial = (nextIndex, direction = 'next') => {
   const outgoingClass = direction === 'prev' ? 'slide-out-right' : 'slide-out-left';
 
   testimonialAnimating = true;
-  nextTestimonial.classList.add(incomingClass);
+  nextTestimonial.classList.add('active', incomingClass);
   nextTestimonial.getBoundingClientRect();
-  currentTestimonial.classList.add(outgoingClass);
-  nextTestimonial.classList.add('active');
-  nextTestimonial.classList.remove(incomingClass);
 
   currentTestimonial.setAttribute('aria-hidden', 'true');
   nextTestimonial.setAttribute('aria-hidden', 'false');
   activeTestimonial = normalizedIndex;
   testimonialCounter.textContent = `${String(activeTestimonial + 1).padStart(2, '0')} / ${String(testimonials.length).padStart(2, '0')}`;
+
+  window.requestAnimationFrame(() => {
+    currentTestimonial.classList.add(outgoingClass);
+    nextTestimonial.classList.remove(incomingClass);
+  });
 
   window.setTimeout(() => {
     currentTestimonial.classList.remove('active', outgoingClass);
@@ -143,7 +144,6 @@ const stopTestimonialAutoplay = () => {
 const canAutoplayTestimonials = () => (
   testimonials.length > 1 &&
   testimonialsInView &&
-  !testimonialsHovered &&
   !testimonialsFocused &&
   !document.hidden &&
   !reducedMotion.matches
@@ -165,14 +165,6 @@ const moveTestimonial = (step) => {
 testimonialPrev.addEventListener('click', () => moveTestimonial(-1));
 testimonialNext.addEventListener('click', () => moveTestimonial(1));
 
-testimonialsSection.addEventListener('mouseenter', () => {
-  testimonialsHovered = true;
-  stopTestimonialAutoplay();
-});
-testimonialsSection.addEventListener('mouseleave', () => {
-  testimonialsHovered = false;
-  startTestimonialAutoplay();
-});
 testimonialsSection.addEventListener('focusin', () => {
   testimonialsFocused = true;
   stopTestimonialAutoplay();

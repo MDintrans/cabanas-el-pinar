@@ -127,11 +127,11 @@ h3 { font-size: 1.35rem; line-height: 1.25; }
 .gallery-grid.expanded .extra-gallery { display: block; animation: fadeUp .45s both; }
 .text-button { display: flex; gap: 10px; align-items: center; margin: 34px auto 0; padding: 8px 0; border: 0; border-bottom: 1px solid rgba(255,255,255,.35); background: transparent; color: var(--white); font-size: .8rem; font-weight: 700; cursor: pointer; }
 
-.video-section { padding: clamp(56px, 7vw, 88px) 0; background: var(--charcoal); color: var(--white); }
+.video-section { padding: clamp(56px, 7vw, 88px) 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: linear-gradient(180deg, #f1ebdf 0%, var(--cream) 100%); color: var(--ink); }
 .video-header { max-width: 680px; margin: 0 auto; text-align: center; }
 .video-header h2 { margin-bottom: 14px; font-size: clamp(2.35rem, 4vw, 3.8rem); }
-.video-header p:last-child { max-width: 570px; margin: 0 auto; color: rgba(255,255,255,.75); }
-.video-player { position: relative; width: min(100%, 800px); margin: 34px auto 0; overflow: hidden; aspect-ratio: 16 / 9; border: 1px solid rgba(255,255,255,.14); border-radius: 16px; background: #050a07; box-shadow: 0 22px 52px rgba(0,0,0,.3); }
+.video-header p:last-child { max-width: 570px; margin: 0 auto; color: var(--muted); }
+.video-player { position: relative; width: min(100%, 800px); margin: 34px auto 0; overflow: hidden; aspect-ratio: 16 / 9; border: 1px solid rgba(31,55,37,.16); border-radius: 16px; background: #050a07; box-shadow: 0 24px 58px rgba(24,52,35,.2); }
 .video-player video { width: 100%; height: 100%; background: #050a07; object-fit: contain; }
 
 .rates-section { background: var(--paper); }
@@ -160,12 +160,12 @@ h3 { font-size: 1.35rem; line-height: 1.25; }
 
 .testimonials-section { overflow: hidden; background: var(--sage); }
 .testimonials-track { position: relative; min-height: 350px; overflow: hidden; touch-action: pan-y; }
-.testimonial { position: absolute; inset: 0; display: grid; max-width: 900px; margin: 0 auto; align-content: center; text-align: center; opacity: 0; pointer-events: none; transform: translateX(100%); transition: opacity .65s ease, transform .65s cubic-bezier(.22,.61,.36,1); will-change: opacity, transform; }
-.testimonial.active { opacity: 1; pointer-events: auto; transform: translateX(0); }
-.testimonial.from-left { opacity: 0; transform: translateX(-100%); transition: none; }
-.testimonial.from-right { opacity: 0; transform: translateX(100%); transition: none; }
-.testimonial.slide-out-left { opacity: 0; pointer-events: none; transform: translateX(-100%); }
-.testimonial.slide-out-right { opacity: 0; pointer-events: none; transform: translateX(100%); }
+.testimonial { position: absolute; inset: 0; display: grid; visibility: hidden; max-width: 900px; margin: 0 auto; align-content: center; text-align: center; pointer-events: none; transform: translate3d(105%,0,0); transition: transform .65s cubic-bezier(.22,.61,.36,1); will-change: transform; }
+.testimonial.active { visibility: visible; pointer-events: auto; transform: translate3d(0,0,0); }
+.testimonial.from-left { visibility: visible; transform: translate3d(-105%,0,0); transition: none; }
+.testimonial.from-right { visibility: visible; transform: translate3d(105%,0,0); transition: none; }
+.testimonial.slide-out-left { visibility: visible; pointer-events: none; transform: translate3d(-105%,0,0); }
+.testimonial.slide-out-right { visibility: visible; pointer-events: none; transform: translate3d(105%,0,0); }
 .stars { margin-bottom: 20px; color: var(--green-700); font-size: .8rem; letter-spacing: .2em; }
 .testimonial blockquote { margin: 0; font-family: Georgia, serif; font-size: clamp(1.55rem, 3vw, 2.55rem); line-height: 1.35; letter-spacing: -.025em; }
 .testimonial > p { display: grid; margin: 30px 0 0; font-size: .78rem; }
@@ -176,19 +176,26 @@ h3 { font-size: 1.35rem; line-height: 1.25; }
 .testimonial-controls button:hover { background: var(--green-800); color: var(--white); }
 .testimonial-controls span { min-width: 55px; color: var(--muted); font-size: .7rem; text-align: center; }
 
-.location-section { padding: clamp(56px, 7vw, 88px) 0; background: var(--paper); }
-.location-card { display: grid; overflow: hidden; max-width: 1000px; grid-template-columns: minmax(0, 1.25fr) minmax(340px, .75fr); border-radius: 22px; background: var(--green-800); color: var(--white); box-shadow: 0 24px 60px rgba(24,52,35,.18); }
-.location-map { position: relative; min-height: 420px; overflow: hidden; background: #d8e1d4; }
-.location-map iframe { width: 100%; height: 100%; min-height: 420px; border: 0; }
-.map-location-label { position: absolute; bottom: 24px; left: 24px; display: grid; min-width: 250px; padding: 16px 20px; background: rgba(251,250,246,.96); color: var(--green-950); box-shadow: 0 14px 38px rgba(24,52,35,.2); backdrop-filter: blur(10px); transition: transform .25s, box-shadow .25s; }
+.location-section { padding: clamp(56px, 6vw, 80px) 0; background: linear-gradient(180deg, var(--paper) 0 50%, var(--sage) 50% 100%); }
+.location-heading { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(280px, .65fr); gap: clamp(45px, 8vw, 110px); align-items: end; margin-bottom: 36px; }
+.location-heading h2 { max-width: 760px; margin-bottom: 0; font-size: clamp(2.35rem, 3.8vw, 3.45rem); }
+.location-heading > p { max-width: 390px; margin-bottom: 7px; color: var(--muted); }
+.location-card { display: grid; overflow: hidden; max-width: 1180px; min-height: 480px; grid-template-columns: minmax(0, 1.45fr) minmax(360px, .75fr); border-radius: 24px; background: var(--green-800); color: var(--white); box-shadow: 0 28px 70px rgba(24,52,35,.2); }
+.location-map { position: relative; min-height: 480px; overflow: hidden; background: #d8e1d4; }
+.location-map iframe { width: 100%; height: 100%; min-height: 480px; border: 0; }
+.map-location-label { position: absolute; bottom: 24px; left: 24px; display: grid; min-width: 280px; padding: 16px 20px; border-radius: 12px; background: rgba(251,250,246,.96); color: var(--green-950); box-shadow: 0 14px 38px rgba(24,52,35,.2); backdrop-filter: blur(10px); transition: transform .25s, box-shadow .25s; }
 .map-location-label:hover { transform: translateY(-3px); box-shadow: 0 19px 45px rgba(24,52,35,.26); }
 .map-location-label span { color: var(--green-700); font-size: .64rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
 .map-location-label strong { margin-top: 3px; font-family: Georgia, serif; font-size: 1rem; font-weight: 500; }
-.location-content { display: grid; padding: clamp(36px, 5vw, 58px); align-content: center; }
-.location-content h2 { font-size: clamp(2.25rem, 3.4vw, 3.35rem); }
-.location-content address { margin: 0 0 35px; color: rgba(255,255,255,.73); font-style: normal; }
-.location-content address span { display: inline-block; margin-top: 8px; color: rgba(255,255,255,.9); font-size: .74rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
-.location-content .button { justify-self: start; }
+.location-content { display: grid; padding: clamp(32px, 3.5vw, 44px); align-content: center; }
+.location-content .eyebrow { margin-bottom: 14px; }
+.location-content h3 { max-width: 12ch; margin-bottom: 22px; font-size: clamp(2.05rem, 2.8vw, 2.85rem); line-height: 1; letter-spacing: -.04em; }
+.location-details { display: grid; margin: 0 0 22px; border-top: 1px solid rgba(255,255,255,.2); font-style: normal; }
+.location-detail { display: grid; gap: 4px; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,.2); }
+.location-detail small { color: #b8d0ae; font-size: .65rem; font-weight: 750; letter-spacing: .12em; text-transform: uppercase; }
+.location-detail strong { color: rgba(255,255,255,.9); font-size: .82rem; font-weight: 600; line-height: 1.5; }
+.location-content .button { width: 100%; justify-content: space-between; }
+.location-content .button span { margin-left: 12px; font-size: 1rem; }
 
 .booking-section { background: var(--paper); }
 .booking-layout { display: grid; grid-template-columns: .75fr 1.25fr; gap: clamp(60px, 9vw, 125px); align-items: start; }
@@ -198,18 +205,26 @@ h3 { font-size: 1.35rem; line-height: 1.25; }
 .contact-direct a { display: grid; padding: 17px 0; border-bottom: 1px solid var(--line); }
 .contact-direct span { color: var(--muted); font-size: .68rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
 .contact-direct strong { margin-top: 3px; font-size: .9rem; overflow-wrap: anywhere; }
-.booking-form { display: grid; grid-template-columns: 1fr 1fr; gap: 24px 18px; padding: clamp(30px, 5vw, 55px); background: var(--cream); }
-.field { display: grid; gap: 8px; }
+.booking-form { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 13px 16px; padding: clamp(30px, 3vw, 36px); overflow: hidden; border: 1px solid rgba(31,55,37,.12); border-radius: 18px; background: linear-gradient(145deg, #f4f0e6 0%, var(--cream) 100%); box-shadow: 0 24px 65px rgba(24,52,35,.12); }
+.booking-form::before { position: absolute; top: -125px; right: -115px; width: 260px; height: 260px; border: 1px solid rgba(64,133,37,.16); border-radius: 50%; content: ""; pointer-events: none; }
+.booking-form-heading { position: relative; z-index: 1; display: flex; align-items: flex-end; justify-content: space-between; gap: 22px; padding-bottom: 16px; border-bottom: 1px solid rgba(31,55,37,.16); }
+.booking-form-heading p { margin: 0 0 4px; color: var(--green-700); font-size: .64rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
+.booking-form-heading h3 { margin: 0; font-size: 1.55rem; letter-spacing: -.025em; }
+.form-channel { display: inline-flex; flex: 0 0 auto; align-items: center; gap: 7px; padding: 8px 11px; border-radius: 999px; background: rgba(64,133,37,.1); color: var(--green-800); font-size: .66rem; font-weight: 750; letter-spacing: .04em; white-space: nowrap; }
+.form-channel i { width: 7px; height: 7px; border-radius: 50%; background: var(--green-700); box-shadow: 0 0 0 4px rgba(64,133,37,.12); }
+.field { position: relative; z-index: 1; display: grid; gap: 4px; }
 .field.full, .booking-form .full { grid-column: 1 / -1; }
-.field label { font-size: .72rem; font-weight: 750; letter-spacing: .04em; }
+.field label { padding-left: 2px; font-size: .7rem; font-weight: 750; letter-spacing: .04em; }
 .field label span { color: var(--muted); font-weight: 500; }
-.field input, .field select, .field textarea { width: 100%; min-height: 51px; padding: 12px 0; border: 0; border-bottom: 1px solid rgba(31,55,37,.35); border-radius: 0; outline: none; background: transparent; color: var(--ink); transition: border-color .2s; }
-.field textarea { resize: vertical; }
-.field input:focus, .field select:focus, .field textarea:focus { border-color: var(--green-700); }
+.field input, .field select, .field textarea { width: 100%; min-height: 42px; padding: 8px 12px; border: 1px solid rgba(31,55,37,.2); border-radius: 8px; outline: none; background: rgba(255,255,255,.62); color: var(--ink); transition: border-color .2s, background .2s, box-shadow .2s; }
+.field textarea { min-height: 60px; resize: vertical; }
+.field input:focus, .field select:focus, .field textarea:focus { border-color: var(--green-700); background: rgba(255,255,255,.9); box-shadow: 0 0 0 3px rgba(64,133,37,.1); }
 .field input::placeholder, .field textarea::placeholder { color: #8a9186; }
-.consent { display: flex; gap: 10px; align-items: flex-start; color: var(--muted); font-size: .75rem; }
+.consent { position: relative; z-index: 1; display: flex; gap: 10px; align-items: flex-start; padding: 10px 12px; border: 1px solid rgba(31,55,37,.1); border-radius: 8px; background: rgba(255,255,255,.35); color: var(--muted); font-size: .72rem; }
 .consent input { margin-top: 4px; accent-color: var(--green-700); }
-.form-note { margin: -9px 0 0; color: var(--muted); font-size: .71rem; text-align: center; }
+.booking-form .button-block { position: relative; z-index: 1; min-height: 50px; justify-content: space-between; border-radius: 8px; box-shadow: 0 10px 25px rgba(47,109,31,.18); }
+.form-submit-arrow { font-size: 1.05rem; }
+.form-note { position: relative; z-index: 1; margin: -2px 0 0; color: var(--muted); font-size: .68rem; text-align: center; }
 
 .site-footer { padding: 75px 0 24px; background: var(--charcoal); color: var(--white); }
 .footer-main { display: grid; grid-template-columns: .8fr 1.2fr; gap: 80px; padding-bottom: 70px; }
@@ -246,7 +261,7 @@ h3 { font-size: 1.35rem; line-height: 1.25; }
   .rate-card { padding: 42px 32px; }
   .offers-shell { grid-template-columns: 1fr 1fr; }
   .offers-shell .text-link { grid-column: 1 / -1; }
-  .location-card { grid-template-columns: minmax(0, 1.1fr) minmax(320px, .9fr); }
+  .location-card { grid-template-columns: minmax(0, 1.1fr) minmax(340px, .9fr); }
   .booking-layout { grid-template-columns: .85fr 1.15fr; gap: 55px; }
 }
 
@@ -278,6 +293,8 @@ h3 { font-size: 1.35rem; line-height: 1.25; }
   .offers-shell { grid-template-columns: 1fr; gap: 18px; }
   .offers-shell .text-link { grid-column: auto; }
   .location-card { max-width: 680px; grid-template-columns: 1fr; }
+  .location-heading { grid-template-columns: 1fr; gap: 22px; margin-bottom: 38px; }
+  .location-heading > p { max-width: 560px; margin-bottom: 0; }
   .location-map, .location-map iframe { min-height: 360px; }
   .booking-layout { grid-template-columns: 1fr; }
   .booking-copy { position: static; }
@@ -313,7 +330,11 @@ h3 { font-size: 1.35rem; line-height: 1.25; }
   .location-map, .location-map iframe { min-height: 300px; }
   .location-content { padding: 42px 24px; }
   .map-location-label { right: 16px; bottom: 16px; left: 16px; min-width: 0; }
-  .booking-form { grid-template-columns: 1fr; padding: 28px 20px; }
+  .booking-form { grid-template-columns: 1fr; gap: 16px; padding: 25px 20px; border-radius: 14px; }
+  .booking-form-heading { align-items: flex-start; flex-direction: column; gap: 12px; }
+  .field { gap: 8px; }
+  .field input, .field select, .field textarea { min-height: 51px; padding: 12px; }
+  .field textarea { min-height: 92px; }
   .field.full, .booking-form .full { grid-column: auto; }
   .footer-links { grid-template-columns: 1fr 1fr; gap: 35px; }
   .footer-links > div:last-child { grid-column: 1 / -1; }

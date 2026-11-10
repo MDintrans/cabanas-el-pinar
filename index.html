@@ -17,7 +17,7 @@
     <meta property="og:type" content="website" />
     <title>Cabañas El Pinar | Constitución, Maule</title>
     <link rel="icon" href="assets/logo-el-pinar-temporal.png" type="image/png" />
-    <link rel="stylesheet" href="css/styles.css?v=20261109-4" />
+    <link rel="stylesheet" href="css/styles.css?v=20261110-10" />
   </head>
   <body>
     <a class="skip-link" href="#contenido">Ir al contenido</a>
@@ -126,7 +126,10 @@
               <p>Un rincón propio para desayunar al aire libre o contemplar el entorno.</p>
             </article>
             <article class="amenity-card reveal">
-              <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M9 35c2-7 7-11 15-11s13 4 15 11M15 19c-3 0-5-2-5-5s2-5 5-5 5 2 5 5-2 5-5 5Zm18 0c-3 0-5-2-5-5s2-5 5-5 5 2 5 5-2 5-5 5Z"/></svg>
+              <svg viewBox="0 0 48 48" aria-hidden="true">
+                <path d="M11 41c0-8.2 2.8-14.5 8.5-17.5-4.3-1.8-7.3-6-7.3-11V4.8l7.5 5.2a12 12 0 0 1 8.6 0l7.5-5.2v7.7c0 5-3 9.2-7.3 11C34.2 26.5 37 32.8 37 41H11Z" />
+                <path d="M35 38.5c6.2 0 9-4.3 6.8-9.2" />
+              </svg>
               <h3>Pet friendly</h3>
               <p>Ven con tu mascota y disfruten juntos de una estadía rodeada de naturaleza.</p>
             </article>
@@ -192,7 +195,7 @@
       <section id="video" class="video-section" aria-label="Video de Cabañas El Pinar">
         <div class="shell">
           <div class="video-header">
-            <p class="eyebrow light">Recorre el lugar</p>
+            <p class="eyebrow">Recorre el lugar</p>
             <h2>Un vistazo desde el aire</h2>
             <p>Conoce el entorno natural y la disposición de las cabañas antes de llegar.</p>
           </div>
@@ -269,26 +272,42 @@
         </div>
       </section>
 
-      <section id="ubicacion" class="location-section">
+      <section id="ubicacion" class="location-section" aria-labelledby="location-title">
+        <div class="shell location-heading reveal">
+          <div>
+            <p class="eyebrow">Ubicación</p>
+            <h2 id="location-title">Un rincón tranquilo, fácil de encontrar</h2>
+          </div>
+          <p>Visualiza el acceso a Cabañas El Pinar y abre la ruta directamente en Google Maps cuando estés listo para venir.</p>
+        </div>
         <div class="shell location-card">
           <div class="location-map">
             <iframe
               title="Mapa con la ubicación exacta de Cabañas El Pinar"
-              src="https://www.openstreetmap.org/export/embed.html?bbox=-72.3830625%2C-35.4045625%2C-72.3630625%2C-35.3925625&amp;layer=mapnik&amp;marker=-35.3985625%2C-72.3730625"
+              src="https://www.google.com/maps?q=-35.3985625%2C-72.3730625&amp;z=15&amp;hl=es&amp;output=embed"
               loading="lazy"
               allowfullscreen
-              referrerpolicy="strict-origin-when-cross-origin"
+              referrerpolicy="no-referrer-when-downgrade"
             ></iframe>
             <a class="map-location-label" href="https://www.google.com/maps/search/?api=1&amp;query=JJ2G%2BHQ%2C+Constituci%C3%B3n%2C+Maule%2C+Chile" target="_blank" rel="noopener">
               <span>Ubicación exacta</span>
-              <strong>JJ2G+HQ · Constitución</strong>
+              <strong>Cabañas El Pinar · Constitución</strong>
             </a>
           </div>
           <div class="location-content reveal">
             <p class="eyebrow light">Cómo llegar</p>
-            <h2>En plena naturaleza, cerca de Constitución</h2>
-            <address>Ruta L-30-M, km 11<br />Constitución, Región del Maule<br /><span>Plus Code: JJ2G+HQ</span></address>
-            <a class="button button-light" href="https://www.google.com/maps/dir/?api=1&amp;destination=JJ2G%2BHQ%2C+Constituci%C3%B3n%2C+Maule%2C+Chile" target="_blank" rel="noopener">Cómo llegar con Google Maps</a>
+            <h3>En plena naturaleza, cerca de Constitución</h3>
+            <address class="location-details">
+              <span class="location-detail">
+                <small>Dirección</small>
+                <strong>Ruta L-30-M, km 11<br />Constitución, Región del Maule</strong>
+              </span>
+              <span class="location-detail">
+                <small>Referencia en el mapa</small>
+                <strong>Plus Code · JJ2G+HQ</strong>
+              </span>
+            </address>
+            <a class="button button-light" href="https://www.google.com/maps/dir/?api=1&amp;destination=JJ2G%2BHQ%2C+Constituci%C3%B3n%2C+Maule%2C+Chile" target="_blank" rel="noopener">Trazar ruta en Google Maps <span aria-hidden="true">↗</span></a>
           </div>
         </div>
       </section>
@@ -306,9 +325,16 @@
           </div>
 
           <form class="booking-form reveal" data-booking-form>
+            <div class="booking-form-heading full">
+              <div>
+                <p>Solicitud de reserva</p>
+                <h3>Los detalles de tu estadía</h3>
+              </div>
+              <span class="form-channel"><i aria-hidden="true"></i> Vía WhatsApp</span>
+            </div>
             <div class="field full">
               <label for="name">Nombre y apellido</label>
-              <input id="name" name="name" type="text" autocomplete="name" required placeholder="Tu nombre" />
+              <input id="name" name="name" type="text" autocomplete="name" required placeholder="Ej: María González" />
             </div>
             <div class="field">
               <label for="phone">Teléfono</label>
@@ -349,7 +375,7 @@
               <input type="checkbox" required />
               <span>Acepto que estos datos se usen para responder mi solicitud.</span>
             </label>
-            <button class="button button-primary button-block full" type="submit">Enviar solicitud por WhatsApp</button>
+            <button class="button button-primary button-block full" type="submit"><span>Enviar solicitud por WhatsApp</span><span class="form-submit-arrow" aria-hidden="true">↗</span></button>
             <p class="form-note full" aria-live="polite" data-form-note>Al enviar se abrirá WhatsApp; el mensaje solo se envía cuando tú lo confirmas.</p>
           </form>
         </div>
@@ -382,6 +408,6 @@
       <button type="button" class="lightbox-nav next" data-lightbox-next aria-label="Imagen siguiente">→</button>
     </dialog>
 
-    <script src="js/script.js"></script>
+    <script src="js/script.js?v=20261110-1"></script>
   </body>
 </html>
