@@ -83,17 +83,138 @@ lightbox.addEventListener('keydown', (event) => {
 });
 
 const testimonials = [...document.querySelectorAll('.testimonial')];
+const testimonialsTrack = document.querySelector('[data-testimonials]');
+const testimonialsSection = testimonialsTrack.closest('.testimonials-section');
 const testimonialCounter = document.querySelector('[data-testimonial-counter]');
+const testimonialPrev = document.querySelector('[data-testimonial-prev]');
+const testimonialNext = document.querySelector('[data-testimonial-next]');
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+const TESTIMONIAL_DELAY = 6000;
+const TESTIMONIAL_TRANSITION = 700;
 let activeTestimonial = 0;
+let testimonialTimer;
+let testimonialAnimating = false;
+let testimonialsInView = false;
+let testimonialsHovered = false;
+let testimonialsFocused = false;
+let swipeStartX = null;
+let swipeStartY = null;
 
-const updateTestimonial = (nextIndex) => {
-  testimonials[activeTestimonial].classList.remove('active');
-  activeTestimonial = (nextIndex + testimonials.length) % testimonials.length;
-  testimonials[activeTestimonial].classList.add('active');
+testimonials.forEach((testimonial, index) => {
+  testimonial.setAttribute('role', 'group');
+  testimonial.setAttribute('aria-label', `${index + 1} de ${testimonials.length}`);
+  testimonial.setAttribute('aria-hidden', String(index !== activeTestimonial));
+});
+
+const updateTestimonial = (nextIndex, direction = 'next') => {
+  const normalizedIndex = (nextIndex + testimonials.length) % testimonials.length;
+  if (testimonialAnimating || normalizedIndex === activeTestimonial) return false;
+
+  const currentTestimonial = testimonials[activeTestimonial];
+  const nextTestimonial = testimonials[normalizedIndex];
+  const incomingClass = direction === 'prev' ? 'from-left' : 'from-right';
+  const outgoingClass = direction === 'prev' ? 'slide-out-right' : 'slide-out-left';
+
+  testimonialAnimating = true;
+  nextTestimonial.classList.add(incomingClass);
+  nextTestimonial.getBoundingClientRect();
+  currentTestimonial.classList.add(outgoingClass);
+  nextTestimonial.classList.add('active');
+  nextTestimonial.classList.remove(incomingClass);
+
+  currentTestimonial.setAttribute('aria-hidden', 'true');
+  nextTestimonial.setAttribute('aria-hidden', 'false');
+  activeTestimonial = normalizedIndex;
   testimonialCounter.textContent = `${String(activeTestimonial + 1).padStart(2, '0')} / ${String(testimonials.length).padStart(2, '0')}`;
+
+  window.setTimeout(() => {
+    currentTestimonial.classList.remove('active', outgoingClass);
+    testimonialAnimating = false;
+  }, reducedMotion.matches ? 20 : TESTIMONIAL_TRANSITION);
+
+  return true;
 };
-document.querySelector('[data-testimonial-prev]').addEventListener('click', () => updateTestimonial(activeTestimonial - 1));
-document.querySelector('[data-testimonial-next]').addEventListener('click', () => updateTestimonial(activeTestimonial + 1));
+
+const stopTestimonialAutoplay = () => {
+  window.clearInterval(testimonialTimer);
+  testimonialTimer = undefined;
+};
+
+const canAutoplayTestimonials = () => (
+  testimonials.length > 1 &&
+  testimonialsInView &&
+  !testimonialsHovered &&
+  !testimonialsFocused &&
+  !document.hidden &&
+  !reducedMotion.matches
+);
+
+const startTestimonialAutoplay = () => {
+  stopTestimonialAutoplay();
+  if (!canAutoplayTestimonials()) return;
+  testimonialTimer = window.setInterval(() => {
+    updateTestimonial(activeTestimonial + 1, 'next');
+  }, TESTIMONIAL_DELAY);
+};
+
+const moveTestimonial = (step) => {
+  const moved = updateTestimonial(activeTestimonial + step, step < 0 ? 'prev' : 'next');
+  if (moved) startTestimonialAutoplay();
+};
+
+testimonialPrev.addEventListener('click', () => moveTestimonial(-1));
+testimonialNext.addEventListener('click', () => moveTestimonial(1));
+
+testimonialsSection.addEventListener('mouseenter', () => {
+  testimonialsHovered = true;
+  stopTestimonialAutoplay();
+});
+testimonialsSection.addEventListener('mouseleave', () => {
+  testimonialsHovered = false;
+  startTestimonialAutoplay();
+});
+testimonialsSection.addEventListener('focusin', () => {
+  testimonialsFocused = true;
+  stopTestimonialAutoplay();
+});
+testimonialsSection.addEventListener('focusout', () => {
+  window.requestAnimationFrame(() => {
+    testimonialsFocused = testimonialsSection.contains(document.activeElement);
+    startTestimonialAutoplay();
+  });
+});
+
+testimonialsTrack.addEventListener('pointerdown', (event) => {
+  if (event.pointerType !== 'touch') return;
+  swipeStartX = event.clientX;
+  swipeStartY = event.clientY;
+});
+testimonialsTrack.addEventListener('pointerup', (event) => {
+  if (swipeStartX === null || swipeStartY === null) return;
+  const distanceX = event.clientX - swipeStartX;
+  const distanceY = event.clientY - swipeStartY;
+  swipeStartX = null;
+  swipeStartY = null;
+  if (Math.abs(distanceX) > 45 && Math.abs(distanceX) > Math.abs(distanceY)) {
+    moveTestimonial(distanceX < 0 ? 1 : -1);
+  }
+});
+testimonialsTrack.addEventListener('pointercancel', () => {
+  swipeStartX = null;
+  swipeStartY = null;
+});
+
+const testimonialObserver = new IntersectionObserver(([entry]) => {
+  testimonialsInView = entry.isIntersecting && entry.intersectionRatio >= 0.35;
+  if (testimonialsInView) startTestimonialAutoplay();
+  else stopTestimonialAutoplay();
+}, { threshold: [0, 0.35] });
+testimonialObserver.observe(testimonialsSection);
+
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden) stopTestimonialAutoplay();
+  else startTestimonialAutoplay();
+});
 
 const checkin = document.querySelector('#checkin');
 const checkout = document.querySelector('#checkout');

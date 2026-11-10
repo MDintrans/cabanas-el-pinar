@@ -159,9 +159,13 @@ h3 { font-size: 1.35rem; line-height: 1.25; }
 .text-link span { margin-left: 6px; color: var(--green-700); }
 
 .testimonials-section { overflow: hidden; background: var(--sage); }
-.testimonials-track { position: relative; min-height: 350px; }
-.testimonial { position: absolute; inset: 0; display: grid; max-width: 900px; margin: 0 auto; align-content: center; text-align: center; opacity: 0; pointer-events: none; transform: translateX(40px); transition: opacity .45s, transform .45s; }
-.testimonial.active { opacity: 1; pointer-events: auto; transform: none; }
+.testimonials-track { position: relative; min-height: 350px; overflow: hidden; touch-action: pan-y; }
+.testimonial { position: absolute; inset: 0; display: grid; max-width: 900px; margin: 0 auto; align-content: center; text-align: center; opacity: 0; pointer-events: none; transform: translateX(100%); transition: opacity .65s ease, transform .65s cubic-bezier(.22,.61,.36,1); will-change: opacity, transform; }
+.testimonial.active { opacity: 1; pointer-events: auto; transform: translateX(0); }
+.testimonial.from-left { opacity: 0; transform: translateX(-100%); transition: none; }
+.testimonial.from-right { opacity: 0; transform: translateX(100%); transition: none; }
+.testimonial.slide-out-left { opacity: 0; pointer-events: none; transform: translateX(-100%); }
+.testimonial.slide-out-right { opacity: 0; pointer-events: none; transform: translateX(100%); }
 .stars { margin-bottom: 20px; color: var(--green-700); font-size: .8rem; letter-spacing: .2em; }
 .testimonial blockquote { margin: 0; font-family: Georgia, serif; font-size: clamp(1.55rem, 3vw, 2.55rem); line-height: 1.35; letter-spacing: -.025em; }
 .testimonial > p { display: grid; margin: 30px 0 0; font-size: .78rem; }
